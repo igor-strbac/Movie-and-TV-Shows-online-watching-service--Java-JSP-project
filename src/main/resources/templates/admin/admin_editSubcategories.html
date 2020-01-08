@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:insert="fragments.html :: headerfiles">
+    </head>
+    <body>
+        <header th:insert="fragments.html :: nav"></header>
+        <!-- Page content goes here-->
+        <!--<div class="container">
+            <p>Admin index </p>
+        </div>-->
+        <!-- Page content goes here -->
+        <!--<div class="container">
+            <div class="jumbotron">
+                <h1 class="display-4">TEMPLATES - INDEX.HTML</h1>
+                <p class="lead">This is the home page of our web application. Anyone can access it, even if they have not signed in.</p>
+                <hr class="my-4">
+                <p>Using this example, you will become more familiar with Spring Security concepts:)</p>
+                <p class="lead">
+                    <a class="btn btn-primary btn-lg" href="https://spring.io/projects/spring-security" role="button">Learn more about Spring Security</a>
+                </p>
+            </div>
+        </div>-->
+        <div class="body">                           
+            <div id="mySidepanel" class="sidepanel">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+                <a class="naslov">FILMOVI</a>
+                <div class="dropdown-container">
+                    <a href="filmovi.jsp" class="podnaslov">Svi filmovi</a>
+                    <a href="avantura.jsp" class="podnaslov">Avantura</a>
+                    <a href="akcija.jsp" class="podnaslov">Akcija</a>
+                    <a href="drama.jsp" class="podnaslov">Drama</a>
+                    <a href="komedija.jsp" class="podnaslov">Komedija</a>
+                    <a href="romanticni.jsp" class="podnaslov">Romanticni</a>
+                    <a href="deciji.jsp" class="podnaslov">Deciji</a>
+                    <a href="krimi.jsp" class="podnaslov">Kriminalisticki</a>
+                    <a href="sf.jsp" class="podnaslov">Sci Fi</a>
+                </div>
+                <a class="naslov">SERIJE</a>
+                <div class="dropdown-container">
+                    <a href="serije.jsp" class="podnaslov">Sve serije</a>
+                </div>
+                <a class="naslov">ANIMIRANI FILMOVI</a>
+                <div class="dropdown-container">
+                    <a href="animirani filmovi.jsp" class="podnaslov">Svi animirani</a>
+                    <a href="anime_ep.jsp" class="podnaslov">Epizodni</a>
+                    <a href="anime_dugi.jsp" class="podnaslov">Dugometrazni</a>
+                </div>
+            </div>
+            <button class="openbtn" onclick="openNav()"style="width:auto;">☰ KATEGORIJE </button>
+
+            <script>
+                function openNav() {
+                    document.getElementById("mySidepanel").style.width = "250px";
+                }
+
+                function closeNav() {
+                    document.getElementById("mySidepanel").style.width = "0";
+                }
+            </script>
+            <script>
+                /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+                var sidepanel = document.getElementsByClassName("naslov");
+                var i;
+                for (i = 0; i < sidepanel.length; i++) {
+                    sidepanel[i].addEventListener("click", function () {
+                        this.classList.toggle("active");
+                        var dropdownContent = this.nextElementSibling;
+                        if (dropdownContent.style.display == "block") {
+                            dropdownContent.style.display = "none";
+                        } else {
+                            dropdownContent.style.display = "block";
+                        }
+                    });
+                }
+            </script>
+            <div align="center">
+                <form action="#" th:action="@{/admin/saveSubcategory}" th:object="${subcategories}"
+                      method="post">
+
+                    <table border="0" cellpadding="10">                         
+                        <tr>
+                            <td>ID:</td>
+                            <td><input type="text" th:field="*{id_subcategory}" readonly="readonly"/></td>
+                        </tr>
+                        <tr>
+                            <td>subcategory name:</td>
+                            <td><input type="text" th:field="*{subcategory_name}" /></td>
+                        </tr>
+                        <tr>
+                            <td>category:</td>
+                            <td>
+                                <select th:field="*{categories}">
+                                    <option th:each="categories : ${categories}"
+                                            th:value="${categories.id_category}"
+                                            th:utext="${categories.category_name}"/></select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><button type="submit">Save</button></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+        <footer id="footer">
+            <div class="footertxt">Portal.com NE VRŠI stream videa ili hostuje video snimke, Filmove koje gosti gledaju kod nas na sajtu su hostovani na sajtovima kao što su Openload, Vidbul, bestreams, Vidzi, TheVideo, Streamin itd.
+                Svi video zapisi koji se nalaze na tim sajtovima su verovatno odobreni od strane vlasnika istih.
+                Portal.com nije odgovorna za sadrzaj drugih sajtova.<br/>
+                Portal.com is not responsible for the availability of such third party web sites. The content of such third party web sites is beyond our control. We neither endorse, 
+                make any representations nor accept any liability (whether direct or indirect) for such third party web sites or their content, products or services offered at those web sites, or by their sponsoring companies.
+            </div>
+        </footer>
+    </body>
+</html>
