@@ -19,6 +19,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 /**
  *
@@ -38,6 +39,9 @@ public class Videos {
 
     @Column(name = "link")
     private String link;
+    
+    @Column(name = "picture_link")
+    private String pictureLink;
 
     @Column(name = "length")
     private String length;
@@ -55,6 +59,16 @@ public class Videos {
     private Subcategories subcategories;
     
     public Videos() {
+    }
+
+    public Videos(long id_video, String title, String link, String pictureLink, String length, String description, Subcategories subcategories) {
+        this.id_video = id_video;
+        this.title = title;
+        this.link = link;
+        this.pictureLink = pictureLink;
+        this.length = length;
+        this.description = description;
+        this.subcategories = subcategories;
     }
 
     public long getId_video() {
@@ -79,6 +93,14 @@ public class Videos {
 
     public void setLink(String link) {
         this.link = link;
+    }
+
+    public String getPictureLink() {
+        return pictureLink;
+    }
+
+    public void setPictureLink(String pictureLink) {
+        this.pictureLink = pictureLink;
     }
 
     public String getLength() {
@@ -116,13 +138,14 @@ public class Videos {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 67 * hash + (int) (this.id_video ^ (this.id_video >>> 32));
-        hash = 67 * hash + Objects.hashCode(this.title);
-        hash = 67 * hash + Objects.hashCode(this.link);
-        hash = 67 * hash + Objects.hashCode(this.length);
-        hash = 67 * hash + Objects.hashCode(this.description);
-        hash = 67 * hash + Objects.hashCode(this.added);
-        hash = 67 * hash + Objects.hashCode(this.subcategories);
+        hash = 47 * hash + (int) (this.id_video ^ (this.id_video >>> 32));
+        hash = 47 * hash + Objects.hashCode(this.title);
+        hash = 47 * hash + Objects.hashCode(this.link);
+        hash = 47 * hash + Objects.hashCode(this.pictureLink);
+        hash = 47 * hash + Objects.hashCode(this.length);
+        hash = 47 * hash + Objects.hashCode(this.description);
+        hash = 47 * hash + Objects.hashCode(this.added);
+        hash = 47 * hash + Objects.hashCode(this.subcategories);
         return hash;
     }
 
@@ -147,6 +170,9 @@ public class Videos {
         if (!Objects.equals(this.link, other.link)) {
             return false;
         }
+        if (!Objects.equals(this.pictureLink, other.pictureLink)) {
+            return false;
+        }
         if (!Objects.equals(this.length, other.length)) {
             return false;
         }
@@ -164,7 +190,8 @@ public class Videos {
 
     @Override
     public String toString() {
-        return "Videos{" + "id_video=" + id_video + ", title=" + title + ", link=" + link + ", length=" + length + ", description=" + description + ", added=" + added + ", subcategories=" + subcategories + '}';
+        return "Videos{" + "id_video=" + id_video + ", title=" + title + ", link=" + link + ", pictureLink=" + pictureLink + ", length=" + length + ", description=" + description + ", added=" + added + ", subcategories=" + subcategories + '}';
     }
+
 
 }
